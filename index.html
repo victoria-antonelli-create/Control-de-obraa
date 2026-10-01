@@ -17,7 +17,23 @@
 <div class="actions"><button class="primary" onclick="mesActual()">MES ACTUAL</button></div>
 </div>
 <div class="summary-grid"><div class="metric"><small>TOTAL PRESUPUESTADO</small><strong id="a">$ 0</strong></div><div class="metric"><small>TOTAL INGRESOS</small><strong id="b">$ 0</strong></div><div class="metric"><small>TOTAL EGRESOS</small><strong id="c">$ 0</strong></div><div class="metric"><small>SALDO / RESULTADO</small><strong id="d">$ 0</strong></div>
-<div class="metric pending-card"><small>TOTAL PENDIENTE A COBRAR</small><strong id="e">$ 0</strong></div></div><div class="card"><h2>Resumen por presupuesto</h2><div class="table-wrap"><table><thead><tr><th>N.º</th><th>Cliente</th><th>Estado</th><th>Presupuestado</th><th>Ingresos</th><th>Egresos</th><th>Saldo de caja</th><th>Pendiente de cobrar</th></tr></thead><tbody id="tr"></tbody></table></div></div></section>
+<div class="metric pending-card"><small>TOTAL PENDIENTE A COBRAR</small><strong id="e">$ 0</strong></div></div><div class="card"><h2>Resumen por presupuesto</h2><h2 style="margin-top:30px;">Pendientes de cobro</h2>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>N.º</th>
+<th>Cliente</th>
+<th>Presupuesto</th>
+<th>Cobrado</th>
+<th>Pendiente</th>
+</tr>
+</thead>
+
+<tbody id="pendientesBody"></tbody>
+</table>
+</div><div class="table-wrap"><table><thead><tr><th>N.º</th><th>Cliente</th><th>Estado</th><th>Presupuestado</th><th>Ingresos</th><th>Egresos</th><th>Saldo de caja</th><th>Pendiente de cobrar</th></tr></thead><tbody id="tr"></tbody></table></div></div></section>
 </main><script>
 const KP="sdp",KM="sdm";let P=JSON.parse(localStorage.getItem(KP)||"[]"),M=JSON.parse(localStorage.getItem(KM)||"[]");let today=new Date().toISOString().slice(0,10);pf.value=today;mf.value=today;mesResumen.value=today.slice(0,7);
 const money=n=>new Intl.NumberFormat("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0}).format(n||0), esc=s=>String(s??"").replace(/[&<>"]/g,x=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[x]));
