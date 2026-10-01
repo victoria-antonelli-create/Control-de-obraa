@@ -88,7 +88,18 @@ let pendienteTotal=P.filter(p=>p.e==="Aprobado").reduce((s,p)=>{
         return {...p,cobrado,pendiente};
     })
     .filter(p=>p.pendiente>0)
-    .sort((a,b)=>Number(b.n)-Number(a.n));
+    .sort((a,b)=>Number(b.n)-Number(a.n));document.getElementById("pendientesBody").innerHTML =
+  pendientes.length
+    ? pendientes.map(p => `
+      <tr>
+        <td>#${esc(p.n)}</td>
+        <td>${esc(p.c)}</td>
+        <td>${money(p.m)}</td>
+        <td>${money(p.cobrado)}</td>
+        <td><strong>${money(p.pendiente)}</strong></td>
+      </tr>
+    `).join("")
+    : `<tr><td colspan="5" class="empty">No hay pendientes de cobro</td></tr>`;
 a.textContent=money(tpres);b.textContent=money(ti);c.textContent=money(te);d.textContent=money(sal);e.textContent=money(pendienteTotal);d.className=sal>=0?"positive":"negative";
 tr.innerHTML=PM.length?PM.map(p=>{let x=MM.filter(m=>String(m.n)==String(p.n)),i=x.filter(m=>m.t=="Ingreso").reduce((s,m)=>s+m.m,0),e=x.filter(m=>m.t=="Egreso").reduce((s,m)=>s+m.m,0);const pendiente=p.e=="Aprobado"?Math.max(0,Number(p.m)-i):0;
 return `<tr><td>#${esc(p.n)}</td><td>${esc(p.c)}</td><td>${esc(p.e)}</td><td class=num>${money(p.m)}</td><td class=num>${money(i)}</td><td class=num>${money(e)}</td><td class=num>${money(i-e)}</td><td class=num>${money(pendiente)}</td></tr>`}).join(""):'<tr><td colspan=8 class=empty>No hay datos para este mes.</td></tr>'}
