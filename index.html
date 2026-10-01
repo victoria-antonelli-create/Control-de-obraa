@@ -55,9 +55,10 @@ let ti=MM.filter(x=>x.t=="Ingreso").reduce((s,x)=>s+x.m,0);
 let te=MM.filter(x=>x.t=="Egreso").reduce((s,x)=>s+x.m,0);
 let tpres=PM.reduce((s,x)=>s+x.m,0);
 let sal=ti-te;
-let pendienteTotal=PM.filter(p=>p.e=="Aprobado").reduce((s,p)=>{
- const cobrado=MM.filter(m=>String(m.n)==String(p.n)&&m.t=="Ingreso").reduce((a,m)=>a+m.m,0);
- return s+Math.max(0,p.m-cobrado);
+let pendienteTotal=P.filter(p=>p.e==="Aprobado").reduce((s,p)=>{
+    const cobrado=M.filter(m=>String(m.n).trim()===String(p.n).trim()&&m.t==="Ingreso")
+        .reduce((a,m)=>a+Number(m.m||0),0);
+    return s+Math.max(0,Number(p.m||0)-cobrado);
 },0);
 a.textContent=money(tpres);b.textContent=money(ti);c.textContent=money(te);d.textContent=money(sal);e.textContent=money(pendienteTotal);d.className=sal>=0?"positive":"negative";
 tr.innerHTML=PM.length?PM.map(p=>{let x=MM.filter(m=>String(m.n)==String(p.n)),i=x.filter(m=>m.t=="Ingreso").reduce((s,m)=>s+m.m,0),e=x.filter(m=>m.t=="Egreso").reduce((s,m)=>s+m.m,0);const pendiente=p.e=="Aprobado"?Math.max(0,Number(p.m)-i):0;
