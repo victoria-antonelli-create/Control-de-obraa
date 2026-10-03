@@ -3,14 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>STUDIO DIC | Control de Obras</title>
 
 <style>
-
-*{
-box-sizing:border-box
-}
+*{box-sizing:border-box}
 
 body{
 margin:0;
@@ -110,8 +106,7 @@ font-weight:700
 grid-column:1/-1
 }
 
-input,
-select{
+input,select{
 border:1px solid #c8c8c8;
 border-radius:5px;
 padding:11px;
@@ -141,8 +136,7 @@ border-collapse:collapse;
 font-size:13px
 }
 
-th,
-td{
+th,td{
 border:1px solid #d0d0ce;
 padding:9px;
 text-align:left
@@ -163,14 +157,6 @@ border-radius:4px;
 padding:5px;
 font-size:12px;
 background:#fff
-}
-
-.month-card{
-margin-bottom:16px
-}
-
-.month-card .field{
-max-width:260px
 }
 
 .summary-grid{
@@ -215,13 +201,6 @@ background:#fffdf7
 color:#b45f08
 }
 
-.pending-info{
-font-size:12px;
-color:#666;
-margin-top:-7px;
-margin-bottom:15px
-}
-
 .empty{
 text-align:center;
 color:#777;
@@ -231,7 +210,12 @@ padding:25px
 .delete{
 border:0;
 background:none;
-cursor:pointer
+cursor:pointer;
+font-size:16px
+}
+
+.table-wrap{
+overflow-x:auto
 }
 
 @media(max-width:750px){
@@ -240,8 +224,7 @@ main{
 padding:10px
 }
 
-.grid,
-.summary-grid{
+.grid,.summary-grid{
 grid-template-columns:1fr 1fr
 }
 
@@ -249,16 +232,11 @@ table{
 min-width:760px
 }
 
-.table-wrap{
-overflow-x:auto
-}
-
 }
 
 @media(max-width:480px){
 
-.grid,
-.summary-grid{
+.grid,.summary-grid{
 grid-template-columns:1fr
 }
 
@@ -267,10 +245,9 @@ font-size:11px
 }
 
 }
-
 </style>
-
 </head>
+
 
 <body>
 
@@ -278,9 +255,7 @@ font-size:11px
 
 <h1>STUDIO DIC</h1>
 
-<p>
-CONTROL DE PRESUPUESTOS Y MOVIMIENTOS
-</p>
+<p>CONTROL DE PRESUPUESTOS Y MOVIMIENTOS</p>
 
 </header>
 
@@ -289,22 +264,19 @@ CONTROL DE PRESUPUESTOS Y MOVIMIENTOS
 
 <button
 class="tab active"
-onclick="tab('presupuestos',this)"
->
+onclick="tab('presupuestos',this)">
 PRESUPUESTOS
 </button>
 
 <button
 class="tab"
-onclick="tab('movimientos',this)"
->
+onclick="tab('movimientos',this)">
 MOVIMIENTOS
 </button>
 
 <button
 class="tab"
-onclick="tab('resumen',this)"
->
+onclick="tab('resumen',this)">
 RESUMEN
 </button>
 
@@ -314,43 +286,28 @@ RESUMEN
 <main>
 
 
-<!-- ============================= -->
-<!-- PRESUPUESTOS -->
-<!-- ============================= -->
+<!-- ==================== PRESUPUESTOS ==================== -->
 
-<section
-id="presupuestos"
-class="section active"
->
+<section id="presupuestos" class="section active">
 
 <div class="card">
 
-<h2>
-Nuevo presupuesto / obra
-</h2>
+<h2>Nuevo presupuesto / obra</h2>
 
 <div class="grid">
 
-
 <div class="field">
 
-<label>
-N.º PRESUPUESTO
-</label>
+<label>N.º PRESUPUESTO</label>
 
-<input
-id="pn"
-type="number"
->
+<input id="pn" type="number">
 
 </div>
 
 
 <div class="field">
 
-<label>
-CLIENTE
-</label>
+<label>CLIENTE</label>
 
 <input id="pc">
 
@@ -359,37 +316,24 @@ CLIENTE
 
 <div class="field">
 
-<label>
-MONTO PRESUPUESTADO
-</label>
+<label>MONTO PRESUPUESTADO</label>
 
-<input
-id="pm"
-type="number"
->
+<input id="pm" type="number">
 
 </div>
 
 
 <div class="field">
 
-<label>
-ESTADO
-</label>
+<label>ESTADO</label>
 
 <select id="pe">
 
-<option>
-Pendiente
-</option>
+<option>Pendiente</option>
 
-<option>
-Aprobado
-</option>
+<option>Aprobado</option>
 
-<option>
-Finalizado
-</option>
+<option>Finalizado</option>
 
 </select>
 
@@ -398,28 +342,20 @@ Finalizado
 
 <div class="field">
 
-<label>
-FECHA
-</label>
+<label>FECHA</label>
 
-<input
-id="pf"
-type="date"
->
+<input id="pf" type="date">
 
 </div>
 
 
 <div class="field full">
 
-<label>
-DESCRIPCIÓN / OBRA
-</label>
+<label>DESCRIPCIÓN / OBRA</label>
 
 <input id="pd">
 
 </div>
-
 
 </div>
 
@@ -428,9 +364,10 @@ DESCRIPCIÓN / OBRA
 
 <button
 class="primary"
-onclick="addP()"
->
+onclick="addP()">
+
 GUARDAR PRESUPUESTO
+
 </button>
 
 </div>
@@ -440,9 +377,7 @@ GUARDAR PRESUPUESTO
 
 <div class="card">
 
-<h2>
-Presupuestos cargados
-</h2>
+<h2>Presupuestos cargados</h2>
 
 <div class="table-wrap">
 
@@ -453,11 +388,17 @@ Presupuestos cargados
 <tr>
 
 <th>N.º</th>
+
 <th>Cliente</th>
+
 <th>Obra</th>
+
 <th>Monto</th>
+
 <th>Estado</th>
+
 <th>Fecha</th>
+
 <th>Acciones</th>
 
 </tr>
@@ -475,29 +416,21 @@ Presupuestos cargados
 </section>
 
 
-<!-- ============================= -->
-<!-- MOVIMIENTOS -->
-<!-- ============================= -->
 
-<section
-id="movimientos"
-class="section"
->
+<!-- ==================== MOVIMIENTOS ==================== -->
+
+<section id="movimientos" class="section">
 
 <div class="card">
 
-<h2>
-Nuevo movimiento
-</h2>
+<h2>Nuevo movimiento</h2>
 
 <div class="grid">
 
 
 <div class="field">
 
-<label>
-N.º PRESUPUESTO
-</label>
+<label>N.º PRESUPUESTO</label>
 
 <select id="mn"></select>
 
@@ -506,19 +439,13 @@ N.º PRESUPUESTO
 
 <div class="field">
 
-<label>
-TIPO
-</label>
+<label>TIPO</label>
 
 <select id="mt">
 
-<option>
-Ingreso
-</option>
+<option>Ingreso</option>
 
-<option>
-Egreso
-</option>
+<option>Egreso</option>
 
 </select>
 
@@ -527,45 +454,31 @@ Egreso
 
 <div class="field">
 
-<label>
-MONTO
-</label>
+<label>MONTO</label>
 
-<input
-id="mm"
-type="number"
->
+<input id="mm" type="number">
 
 </div>
 
 
 <div class="field">
 
-<label>
-FECHA
-</label>
+<label>FECHA</label>
 
-<input
-id="mf"
-type="date"
->
+<input id="mf" type="date">
 
 </div>
 
 
 <div class="field full">
 
-<label>
-CONCEPTO
-</label>
+<label>CONCEPTO</label>
 
 <input
 id="mc"
-placeholder="Seña, ayudante, materiales, combustible..."
->
+placeholder="Seña, ayudante, materiales, combustible...">
 
 </div>
-
 
 </div>
 
@@ -574,9 +487,10 @@ placeholder="Seña, ayudante, materiales, combustible..."
 
 <button
 class="primary"
-onclick="addM()"
->
+onclick="addM()">
+
 GUARDAR MOVIMIENTO
+
 </button>
 
 </div>
@@ -586,9 +500,7 @@ GUARDAR MOVIMIENTO
 
 <div class="card">
 
-<h2>
-Movimientos
-</h2>
+<h2>Movimientos</h2>
 
 <div class="table-wrap">
 
@@ -599,10 +511,15 @@ Movimientos
 <tr>
 
 <th>Fecha</th>
+
 <th>Presupuesto</th>
+
 <th>Tipo</th>
+
 <th>Concepto</th>
+
 <th>Monto</th>
+
 <th></th>
 
 </tr>
@@ -620,34 +537,24 @@ Movimientos
 </section>
 
 
-<!-- ============================= -->
-<!-- RESUMEN -->
-<!-- ============================= -->
 
-<section
-id="resumen"
-class="section"
->
+<!-- ==================== RESUMEN ==================== -->
+
+<section id="resumen" class="section">
 
 
-<div class="card month-card">
+<div class="card">
 
-<h2>
-Resumen mensual
-</h2>
-
+<h2>Resumen mensual</h2>
 
 <div class="field">
 
-<label>
-MES A CONSULTAR
-</label>
+<label>MES A CONSULTAR</label>
 
 <input
 id="mesResumen"
 type="month"
-onchange="render()"
->
+onchange="render()">
 
 </div>
 
@@ -656,9 +563,10 @@ onchange="render()"
 
 <button
 class="primary"
-onclick="mesActual()"
->
+onclick="mesActual()">
+
 MES ACTUAL
+
 </button>
 
 </div>
@@ -666,72 +574,51 @@ MES ACTUAL
 </div>
 
 
-<!-- TOTALES -->
 
 <div class="summary-grid">
 
 
 <div class="metric">
 
-<small>
-TOTAL PRESUPUESTADO
-</small>
+<small>TOTAL PRESUPUESTADO</small>
 
-<strong id="a">
-$ 0
-</strong>
+<strong id="a">$ 0</strong>
 
 </div>
 
 
 <div class="metric">
 
-<small>
-TOTAL INGRESOS
-</small>
+<small>TOTAL INGRESOS</small>
 
-<strong id="b">
-$ 0
-</strong>
+<strong id="b">$ 0</strong>
 
 </div>
 
 
 <div class="metric">
 
-<small>
-TOTAL EGRESOS
-</small>
+<small>TOTAL EGRESOS</small>
 
-<strong id="c">
-$ 0
-</strong>
+<strong id="c">$ 0</strong>
 
 </div>
 
 
 <div class="metric">
 
-<small>
-SALDO / RESULTADO
-</small>
+<small>SALDO / RESULTADO</small>
 
-<strong id="d">
-$ 0
-</strong>
+<strong id="d">$ 0</strong>
 
 </div>
 
 
 <div class="metric pending-card">
 
-<small>
-TOTAL PENDIENTE A COBRAR
-</small>
+<small>TOTAL PENDIENTE A COBRAR</small>
 
-<strong id="e">
-$ 0
-</strong>
+<strong id="e">$ 0</strong>
 
 </div>
 
@@ -739,15 +626,12 @@ $ 0
 </div>
 
 
-<!-- RESUMEN DEL MES -->
+
+<!-- RESUMEN POR PRESUPUESTO -->
 
 <div class="card">
 
-
-<h2>
-Resumen por presupuesto
-</h2>
-
+<h2>Resumen por presupuesto</h2>
 
 <div class="table-wrap">
 
@@ -758,12 +642,19 @@ Resumen por presupuesto
 <tr>
 
 <th>N.º</th>
+
 <th>Cliente</th>
+
 <th>Estado</th>
+
 <th>Presupuestado</th>
+
 <th>Ingresos</th>
+
 <th>Egresos</th>
+
 <th>Saldo de caja</th>
+
 <th>Pendiente de cobrar</th>
 
 </tr>
@@ -776,17 +667,15 @@ Resumen por presupuesto
 
 </div>
 
+</div>
+
+
 
 <!-- PENDIENTES -->
 
-<h2 style="margin-top:30px;">
-Pendientes de cobro
-</h2>
+<div class="card">
 
-<p class="pending-info">
-Incluye presupuestos aprobados de cualquier mes que todavía tengan saldo pendiente.
-</p>
-
+<h2>Pendientes de cobro</h2>
 
 <div class="table-wrap">
 
@@ -797,10 +686,15 @@ Incluye presupuestos aprobados de cualquier mes que todavía tengan saldo pendie
 <tr>
 
 <th>N.º</th>
+
 <th>Cliente</th>
+
 <th>Fecha</th>
+
 <th>Presupuesto</th>
+
 <th>Cobrado</th>
+
 <th>Pendiente</th>
 
 </tr>
@@ -813,56 +707,101 @@ Incluye presupuestos aprobados de cualquier mes que todavía tengan saldo pendie
 
 </div>
 
-
 </div>
+
 
 </section>
 
-
 </main>
+
 
 
 <script>
 
 
-/* ============================= */
-/* DATOS */
-/* ============================= */
+/* =========================================================
+   DATOS
+========================================================= */
 
 const KP="sdp";
+
 const KM="sdm";
 
 
-let P=
-JSON.parse(
+let P=JSON.parse(
 localStorage.getItem(KP)||"[]"
 );
 
 
-let M=
-JSON.parse(
+let M=JSON.parse(
 localStorage.getItem(KM)||"[]"
 );
 
 
-let today=
+/* =========================================================
+   ID ÚNICO
+   IMPORTANTE PARA QUE BORRAR NO BORRE OTRO REGISTRO
+========================================================= */
+
+P=P.map((p,i)=>({
+
+...p,
+
+_id:p._id ||
+"p_"+Date.now()+"_"+i+"_"+Math.random()
+.toString(36)
+.slice(2)
+
+}));
+
+
+M=M.map((m,i)=>({
+
+...m,
+
+_id:m._id ||
+"m_"+Date.now()+"_"+i+"_"+Math.random()
+.toString(36)
+.slice(2)
+
+}));
+
+
+localStorage.setItem(
+KP,
+JSON.stringify(P)
+);
+
+
+localStorage.setItem(
+KM,
+JSON.stringify(M)
+);
+
+
+
+/* =========================================================
+   FECHAS
+========================================================= */
+
+const today=
 new Date()
 .toISOString()
 .slice(0,10);
 
 
-pf.value=today;
+document.getElementById("pf").value=today;
 
-mf.value=today;
+document.getElementById("mf").value=today;
 
-mesResumen.value=
+document.getElementById("mesResumen").value=
 today.slice(0,7);
 
 
 
-/* ============================= */
-/* FORMATO DINERO */
-/* ============================= */
+/* =========================================================
+   FUNCIONES AUXILIARES
+========================================================= */
 
 const money=n=>
 
@@ -873,32 +812,32 @@ style:"currency",
 currency:"ARS",
 maximumFractionDigits:0
 }
-).format(n||0);
+).format(Number(n)||0);
 
 
-
-/* ============================= */
-/* ESCAPAR TEXTO */
-/* ============================= */
 
 const esc=s=>
 
 String(s??"")
 .replace(
 /[&<>"]/g,
+
 x=>({
+
 "&":"&amp;",
 "<":"&lt;",
 ">":"&gt;",
 '"':"&quot;"
+
 }[x])
+
 );
 
 
 
-/* ============================= */
-/* GUARDAR */
-/* ============================= */
+/* =========================================================
+   GUARDAR
+========================================================= */
 
 function save(){
 
@@ -918,27 +857,30 @@ render();
 
 
 
-/* ============================= */
-/* PESTAÑAS */
-/* ============================= */
+/* =========================================================
+   CAMBIAR PESTAÑA
+========================================================= */
 
 function tab(id,b){
 
 document
 .querySelectorAll(".section")
-.forEach(
-x=>x.classList.remove("active")
+.forEach(x=>
+x.classList.remove("active")
 );
+
 
 document
 .getElementById(id)
 .classList.add("active");
 
+
 document
 .querySelectorAll(".tab")
-.forEach(
-x=>x.classList.remove("active")
+.forEach(x=>
+x.classList.remove("active")
 );
+
 
 b.classList.add("active");
 
@@ -948,9 +890,9 @@ render();
 
 
 
-/* ============================= */
-/* AGREGAR PRESUPUESTO */
-/* ============================= */
+/* =========================================================
+   AGREGAR PRESUPUESTO
+========================================================= */
 
 function addP(){
 
@@ -960,27 +902,32 @@ if(
 !pm.value
 ){
 
-return alert(
+alert(
 "Completá número, cliente y monto."
 );
+
+return;
 
 }
 
 
 if(
 P.some(
-x=>String(x.n)===String(pn.value)
+x=>String(x.n)===
+String(pn.value)
 )
 ){
 
-return alert(
+alert(
 "Ese número ya existe."
 );
+
+return;
 
 }
 
 
-P.push({
+const nuevo={
 
 n:pn.value,
 
@@ -992,9 +939,18 @@ e:pe.value,
 
 f:pf.value,
 
-d:pd.value
+d:pd.value,
 
-});
+_id:
+"p_"+Date.now()+"_"+
+Math.random()
+.toString(36)
+.slice(2)
+
+};
+
+
+P.push(nuevo);
 
 
 pn.value="";
@@ -1012,9 +968,9 @@ save();
 
 
 
-/* ============================= */
-/* AGREGAR MOVIMIENTO */
-/* ============================= */
+/* =========================================================
+   AGREGAR MOVIMIENTO
+========================================================= */
 
 function addM(){
 
@@ -1024,14 +980,16 @@ if(
 !mc.value
 ){
 
-return alert(
+alert(
 "Completá presupuesto, monto y concepto."
 );
+
+return;
 
 }
 
 
-M.push({
+const nuevo={
 
 n:mn.value,
 
@@ -1041,9 +999,18 @@ m:Number(mm.value),
 
 f:mf.value,
 
-c:mc.value
+c:mc.value,
 
-});
+_id:
+"m_"+Date.now()+"_"+
+Math.random()
+.toString(36)
+.slice(2)
+
+};
+
+
+M.push(nuevo);
 
 
 mm.value="";
@@ -1057,67 +1024,88 @@ save();
 
 
 
-/* ============================= */
-/* BORRAR PRESUPUESTO */
-/* ============================= */
+/* =========================================================
+   BORRAR PRESUPUESTO
+========================================================= */
 
-function delP(indiceReal){
+function delP(id){
 
 if(
-confirm(
+!confirm(
 "¿Eliminar presupuesto?"
 )
-){
+)return;
 
-P.splice(
-indiceReal,
-1
+
+const index=
+P.findIndex(
+p=>p._id===id
 );
+
+
+if(index===-1)return;
+
+
+P.splice(index,1);
+
 
 save();
 
 }
 
-}
 
 
+/* =========================================================
+   BORRAR MOVIMIENTO
+========================================================= */
 
-/* ============================= */
-/* BORRAR MOVIMIENTO */
-/* ============================= */
-
-function delM(indiceReal){
+function delM(id){
 
 if(
-confirm(
+!confirm(
 "¿Eliminar movimiento?"
 )
-){
+)return;
 
-M.splice(
-indiceReal,
-1
+
+const index=
+M.findIndex(
+m=>m._id===id
 );
+
+
+if(index===-1)return;
+
+
+M.splice(index,1);
+
 
 save();
 
 }
 
-}
 
 
-
-/* ============================= */
-/* CAMBIAR ESTADO */
-/* ============================= */
+/* =========================================================
+   CAMBIAR ESTADO
+========================================================= */
 
 function cambiarEstado(
-indiceReal,
+id,
 estado
 ){
 
-P[indiceReal].e=
-estado;
+const index=
+P.findIndex(
+p=>p._id===id
+);
+
+
+if(index===-1)return;
+
+
+P[index].e=estado;
+
 
 save();
 
@@ -1125,14 +1113,22 @@ save();
 
 
 
-/* ============================= */
-/* EDITAR PRESUPUESTO */
-/* ============================= */
+/* =========================================================
+   EDITAR PRESUPUESTO
+========================================================= */
 
-function editarP(indiceReal){
+function editarP(id){
 
-const p=
-P[indiceReal];
+const index=
+P.findIndex(
+p=>p._id===id
+);
+
+
+if(index===-1)return;
+
+
+const p=P[index];
 
 
 const n=
@@ -1171,17 +1167,13 @@ p.d||""
 if(d===null)return;
 
 
-p.n=
-String(n).trim();
+p.n=n.trim();
 
-p.c=
-String(c).trim();
+p.c=c.trim();
 
-p.m=
-Number(m)||0;
+p.m=Number(m)||0;
 
-p.d=
-String(d).trim();
+p.d=d.trim();
 
 
 save();
@@ -1190,28 +1182,24 @@ save();
 
 
 
-/* ============================= */
-/* MES ACTUAL */
-/* ============================= */
+/* =========================================================
+   MES ACTUAL
+========================================================= */
 
 function mesActual(){
 
-const now=
-new Date();
+const now=new Date();
 
 
-mesResumen.value=
+document
+.getElementById("mesResumen")
+.value=
 
-now.getFullYear()
-
-+"-"
-
-+String(
+now.getFullYear()+
+"-"+
+String(
 now.getMonth()+1
-).padStart(
-2,
-"0"
-);
+).padStart(2,"0");
 
 
 render();
@@ -1220,82 +1208,55 @@ render();
 
 
 
-/* ============================= */
-/* COMPROBAR MES */
-/* ============================= */
+/* =========================================================
+   COMPROBAR MES
+========================================================= */
 
 function enMes(
 fecha,
 mes
 ){
 
-return
-
-!mes ||
-
-String(
-fecha||""
-).slice(
-0,
-7
-)===mes;
+return !mes ||
+String(fecha||"")
+.slice(0,7)===mes;
 
 }
 
 
 
-/* ============================= */
-/* RENDER */
-/* ============================= */
+/* =========================================================
+   RENDER
+========================================================= */
 
 function render(){
 
 
-/* ----------------------------- */
-/* PRESUPUESTOS */
-/* ----------------------------- */
-
-/*
-IMPORTANTE:
-
-Primero guardamos el índice REAL
-del presupuesto.
-
-Después ordenamos la lista.
-
-De esta forma editar, borrar
-y cambiar estado siempre actúan
-sobre el presupuesto correcto.
-*/
-
+/* =========================================================
+   PRESUPUESTOS
+========================================================= */
 
 const presupuestosOrdenados=
 
-P
-.map(
-(p,indiceReal)=>({
-p,
-indiceReal
-})
-)
-.sort(
+P.slice().sort(
 (a,b)=>
-Number(b.p.n)-
-Number(a.p.n)
+Number(b.n)-Number(a.n)
 );
 
 
+document.getElementById(
+"tp"
+).innerHTML=
 
-tp.innerHTML=
 
 presupuestosOrdenados.length
 
+
 ?
 
-presupuestosOrdenados
 
-.map(
-({p,indiceReal})=>`
+presupuestosOrdenados
+.map(p=>`
 
 <tr>
 
@@ -1303,40 +1264,46 @@ presupuestosOrdenados
 #${esc(p.n)}
 </td>
 
+
 <td>
 ${esc(p.c)}
 </td>
+
 
 <td>
 ${esc(p.d)}
 </td>
 
+
 <td class="num">
 ${money(p.m)}
 </td>
+
 
 <td>
 
 <select
 class="estado-inline"
-onchange="cambiarEstado(${indiceReal},this.value)"
->
+onchange="
+cambiarEstado(
+'${p._id}',
+this.value
+)">
 
 <option
-${p.e==="Pendiente"?"selected":""}
->
+${p.e==="Pendiente"?"selected":""}>
 Pendiente
 </option>
 
+
 <option
-${p.e==="Aprobado"?"selected":""}
->
+${p.e==="Aprobado"?"selected":""}>
 Aprobado
 </option>
 
+
 <option
-${p.e==="Finalizado"?"selected":""}
->
+${p.e==="Finalizado"?"selected":""}>
 Finalizado
 </option>
 
@@ -1344,72 +1311,83 @@ Finalizado
 
 </td>
 
+
 <td>
 ${esc(p.f)}
 </td>
 
+
 <td>
 
 <button
 class="delete"
-onclick="editarP(${indiceReal})"
->
+onclick="
+editarP('${p._id}')
+">
+
 ✏️
+
 </button>
+
 
 <button
 class="delete"
-onclick="delP(${indiceReal})"
->
+onclick="
+delP('${p._id}')
+">
+
 🗑
+
 </button>
 
 </td>
 
 </tr>
 
-`
-)
+`).join("")
 
-.join("")
 
 :
 
+
 `
+
 <tr>
 
 <td
 colspan="7"
-class="empty"
->
+class="empty">
 
 No hay presupuestos cargados.
 
 </td>
 
 </tr>
+
 `;
 
 
 
-/* ----------------------------- */
-/* SELECT DE MOVIMIENTOS */
-/* ----------------------------- */
+/* =========================================================
+   SELECT DE MOVIMIENTOS
+========================================================= */
 
-mn.innerHTML=
+document.getElementById(
+"mn"
+).innerHTML=
+
 
 presupuestosOrdenados.length
 
+
 ?
 
-presupuestosOrdenados
 
-.map(
-({p})=>`
+presupuestosOrdenados
+.map(p=>`
 
 <option
-value="${esc(p.n)}"
->
+value="${esc(p.n)}">
 
 #${esc(p.n)}
 —
@@ -1417,97 +1395,66 @@ ${esc(p.c)}
 
 </option>
 
-`
-)
+`).join("")
 
-.join("")
 
 :
 
+
 `
+
 <option value="">
+
 Cargá primero un presupuesto
+
 </option>
+
 `;
 
 
 
-/* ----------------------------- */
-/* MOVIMIENTOS */
-/* ----------------------------- */
-
-/*
-También guardamos el índice REAL
-antes de ordenar por fecha.
-
-Así el botón borrar siempre
-elimina el movimiento correcto.
-*/
-
+/* =========================================================
+   MOVIMIENTOS
+========================================================= */
 
 const movimientosOrdenados=
 
-M
-.map(
-(m,indiceReal)=>({
-m,
-indiceReal
-})
-)
-
-.sort(
+M.slice().sort(
 (a,b)=>{
 
-const comparacionFecha=
+const fechaA=
+String(a.f||"");
 
-String(
-b.m.f||""
-)
+const fechaB=
+String(b.f||"");
 
-.localeCompare(
 
-String(
-a.m.f||""
-)
+if(fechaA!==fechaB)
 
+return fechaB.localeCompare(
+fechaA
 );
 
 
-if(
-comparacionFecha!==0
-){
-
-return comparacionFecha;
-
-}
-
-
-/*
-Si tienen la misma fecha,
-el movimiento cargado más
-recientemente aparece primero.
-*/
-
-return
-
-b.indiceReal-
-a.indiceReal;
+return 0;
 
 }
 );
 
 
+document.getElementById(
+"tm"
+).innerHTML=
 
-tm.innerHTML=
 
 movimientosOrdenados.length
 
+
 ?
 
-movimientosOrdenados
 
-.map(
-({m,indiceReal})=>`
+movimientosOrdenados
+.map(m=>`
 
 <tr>
 
@@ -1515,91 +1462,91 @@ movimientosOrdenados
 ${esc(m.f)}
 </td>
 
+
 <td>
 #${esc(m.n)}
 </td>
+
 
 <td>
 ${esc(m.t)}
 </td>
 
+
 <td>
 ${esc(m.c)}
 </td>
+
 
 <td class="num">
 ${money(m.m)}
 </td>
 
+
 <td>
 
 <button
 class="delete"
-onclick="delM(${indiceReal})"
->
+onclick="
+delM('${m._id}')
+">
+
 🗑
+
 </button>
 
 </td>
 
 </tr>
 
-`
-)
+`).join("")
 
-.join("")
 
 :
 
+
 `
+
 <tr>
 
 <td
 colspan="6"
-class="empty"
->
+class="empty">
 
 No hay movimientos.
 
 </td>
 
 </tr>
+
 `;
 
 
 
-/* ----------------------------- */
-/* MES SELECCIONADO */
-/* ----------------------------- */
+/* =========================================================
+   RESUMEN
+========================================================= */
 
 const mes=
-mesResumen.value;
+document.getElementById(
+"mesResumen"
+).value;
 
 
 const PM=
-
 P.filter(
-p=>enMes(
-p.f,
-mes
-)
+p=>enMes(p.f,mes)
 );
 
 
 const MM=
-
 M.filter(
-m=>enMes(
-m.f,
-mes
-)
+m=>enMes(m.f,mes)
 );
 
 
 
-/* ----------------------------- */
-/* TOTAL INGRESOS DEL MES */
-/* ----------------------------- */
+/* INGRESOS */
 
 const ti=
 
@@ -1607,7 +1554,6 @@ MM
 .filter(
 x=>x.t==="Ingreso"
 )
-
 .reduce(
 (s,x)=>
 s+Number(x.m||0),
@@ -1616,9 +1562,7 @@ s+Number(x.m||0),
 
 
 
-/* ----------------------------- */
-/* TOTAL EGRESOS DEL MES */
-/* ----------------------------- */
+/* EGRESOS */
 
 const te=
 
@@ -1626,7 +1570,6 @@ MM
 .filter(
 x=>x.t==="Egreso"
 )
-
 .reduce(
 (s,x)=>
 s+Number(x.m||0),
@@ -1635,14 +1578,11 @@ s+Number(x.m||0),
 
 
 
-/* ----------------------------- */
 /* PRESUPUESTADO DEL MES */
-/* ----------------------------- */
 
 const tpres=
 
-PM
-.reduce(
+PM.reduce(
 (s,x)=>
 s+Number(x.m||0),
 0
@@ -1650,75 +1590,17 @@ s+Number(x.m||0),
 
 
 
-/* ----------------------------- */
-/* SALDO DEL MES */
-/* ----------------------------- */
+/* SALDO */
 
 const sal=
 ti-te;
 
 
 
-/* ============================= */
-/* PENDIENTE TOTAL */
-/* TODOS LOS MESES */
-/* ============================= */
-
-const pendienteTotal=
-
-P
-
-.filter(
-p=>p.e==="Aprobado"
-)
-
-.reduce(
-(s,p)=>{
-
-
-const cobrado=
-
-M
-
-.filter(
-m=>
-
-String(m.n).trim()===
-String(p.n).trim()
-
-&&
-
-m.t==="Ingreso"
-
-)
-
-.reduce(
-(a,m)=>
-a+Number(m.m||0),
-0
-);
-
-
-const falta=
-
-Math.max(
-0,
-Number(p.m||0)-
-cobrado
-);
-
-
-return s+falta;
-
-},
-0
-);
-
-
-
-/* ============================= */
-/* LISTA PENDIENTES */
-/* ============================= */
+/* =========================================================
+   PENDIENTES DE COBRO
+   SE CALCULAN CON TODOS LOS MESES
+========================================================= */
 
 const pendientes=
 
@@ -1728,9 +1610,7 @@ P
 p=>p.e==="Aprobado"
 )
 
-.map(
-p=>{
-
+.map(p=>{
 
 const cobrado=
 
@@ -1740,6 +1620,7 @@ M
 m=>
 
 String(m.n).trim()===
+
 String(p.n).trim()
 
 &&
@@ -1759,8 +1640,7 @@ const pendiente=
 
 Math.max(
 0,
-Number(p.m||0)-
-cobrado
+Number(p.m||0)-cobrado
 );
 
 
@@ -1774,39 +1654,50 @@ pendiente
 
 };
 
-}
-)
+})
+
 
 .filter(
 p=>p.pendiente>0
 )
 
+
 .sort(
 (a,b)=>
-Number(b.n)-
-Number(a.n)
+Number(b.n)-Number(a.n)
 );
 
 
 
-/* ----------------------------- */
-/* MOSTRAR PENDIENTES */
-/* ----------------------------- */
+/* TOTAL PENDIENTE */
 
-document
-.getElementById(
+const pendienteTotal=
+
+pendientes.reduce(
+(s,p)=>
+s+p.pendiente,
+0
+);
+
+
+
+/* =========================================================
+   TABLA PENDIENTES
+========================================================= */
+
+document.getElementById(
 "pendientesBody"
-)
-.innerHTML=
+).innerHTML=
+
 
 pendientes.length
 
+
 ?
 
-pendientes
 
-.map(
-p=>`
+pendientes
+.map(p=>`
 
 <tr>
 
@@ -1814,23 +1705,28 @@ p=>`
 #${esc(p.n)}
 </td>
 
+
 <td>
 ${esc(p.c)}
 </td>
+
 
 <td>
 ${esc(p.f)}
 </td>
 
-<td class="num">
+
+<td>
 ${money(p.m)}
 </td>
 
-<td class="num">
+
+<td>
 ${money(p.cobrado)}
 </td>
 
-<td class="num">
+
+<td>
 
 <strong>
 ${money(p.pendiente)}
@@ -1840,104 +1736,125 @@ ${money(p.pendiente)}
 
 </tr>
 
-`
-)
+`).join("")
 
-.join("")
 
 :
 
+
 `
+
 <tr>
 
 <td
 colspan="6"
-class="empty"
->
+class="empty">
 
 No hay pendientes de cobro.
 
 </td>
 
 </tr>
+
 `;
 
 
 
-/* ----------------------------- */
-/* TOTALES SUPERIORES */
-/* ----------------------------- */
+/* =========================================================
+   NUMEROS GRANDES
+========================================================= */
 
-a.textContent=
+document.getElementById(
+"a"
+).textContent=
 money(tpres);
 
-b.textContent=
+
+document.getElementById(
+"b"
+).textContent=
 money(ti);
 
-c.textContent=
+
+document.getElementById(
+"c"
+).textContent=
 money(te);
 
-d.textContent=
+
+document.getElementById(
+"d"
+).textContent=
 money(sal);
 
-e.textContent=
+
+document.getElementById(
+"e"
+).textContent=
 money(pendienteTotal);
 
 
-d.className=
+document.getElementById(
+"d"
+).className=
 
 sal>=0
-
 ?
-
 "positive"
-
 :
-
 "negative";
 
 
 
-/* ============================= */
-/* RESUMEN DEL MES */
-/* ============================= */
+/* =========================================================
+   RESUMEN POR PRESUPUESTO
+========================================================= */
 
 const resumenOrdenado=
 
-PM
-.slice()
-.sort(
+PM.slice().sort(
 (a,b)=>
-Number(b.n)-
-Number(a.n)
+Number(b.n)-Number(a.n)
 );
 
 
+document.getElementById(
+"tr"
+).innerHTML=
 
-tr.innerHTML=
 
 resumenOrdenado.length
 
+
 ?
 
+
 resumenOrdenado
-
-.map(
-p=>{
+.map(p=>{
 
 
-const movimientosDelPresupuesto=
+/* MOVIMIENTOS DEL MES */
 
-MM.filter(
+const movimientos=
+
+M.filter(
 m=>
+
 String(m.n)===
 String(p.n)
+
+&&
+
+enMes(m.f,mes)
 );
 
 
+
+/* INGRESOS DEL MES */
+
 const ingresos=
 
-movimientosDelPresupuesto
+movimientos
 
 .filter(
 m=>m.t==="Ingreso"
@@ -1950,9 +1867,12 @@ s+Number(m.m||0),
 );
 
 
+
+/* EGRESOS DEL MES */
+
 const egresos=
 
-movimientosDelPresupuesto
+movimientos
 
 .filter(
 m=>m.t==="Egreso"
@@ -1965,6 +1885,9 @@ s+Number(m.m||0),
 );
 
 
+
+/* PENDIENTE TOTAL DEL PRESUPUESTO */
+
 const pendiente=
 
 p.e==="Aprobado"
@@ -1972,9 +1895,31 @@ p.e==="Aprobado"
 ?
 
 Math.max(
+
 0,
-Number(p.m||0)-
-ingresos
+
+Number(p.m||0)
+
+-
+
+M.filter(
+m=>
+
+String(m.n)===
+String(p.n)
+
+&&
+
+m.t==="Ingreso"
+
+)
+
+.reduce(
+(s,m)=>
+s+Number(m.m||0),
+0
+)
+
 )
 
 :
@@ -1982,7 +1927,8 @@ ingresos
 0;
 
 
-return`
+
+return `
 
 <tr>
 
@@ -1990,31 +1936,36 @@ return`
 #${esc(p.n)}
 </td>
 
+
 <td>
 ${esc(p.c)}
 </td>
+
 
 <td>
 ${esc(p.e)}
 </td>
 
+
 <td class="num">
 ${money(p.m)}
 </td>
+
 
 <td class="num">
 ${money(ingresos)}
 </td>
 
+
 <td class="num">
 ${money(egresos)}
 </td>
 
+
 <td class="num">
-${money(
-ingresos-egresos
-)}
+${money(ingresos-egresos)}
 </td>
+
 
 <td class="num">
 ${money(pendiente)}
@@ -2024,37 +1975,40 @@ ${money(pendiente)}
 
 `;
 
-}
-)
+})
+
 
 .join("")
 
+
 :
 
+
 `
+
 <tr>
 
 <td
 colspan="8"
-class="empty"
->
+class="empty">
 
 No hay datos para este mes.
 
 </td>
 
 </tr>
+
 `;
 
 }
 
 
-/* ============================= */
-/* INICIAR */
-/* ============================= */
+
+/* =========================================================
+   INICIAR
+========================================================= */
 
 render();
-
 
 </script>
 
